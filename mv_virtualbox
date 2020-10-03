@@ -1,0 +1,40 @@
+#!/bin/bash
+
+if [[ $1 == "-h" ]]; then
+    echo "Usage: mv_virtualbox [VM-NAME] [NEW-DIR]"
+    exit 1
+fi
+
+if  vboxmanage list vms | fgrep -qw "$1"  && [ -d "$2" ]; then
+    if vboxmanage list runningvms | fgrep -qw "$1" ; then
+        echo "Powering off $1..."
+        vboxmanage controlvm "$1" poweroff
+    fi
+else
+    echo "Invalid name or directory... Quitting"
+    exit 1
+fi 
+
+
+VMNAME=$1
+VMLIST=$(vboxmanage list vms)
+
+TPATH=`VBoxManage list systemproperties | grep -i "default machine folder:" | cut -b 24- | awk '{gsub(/^ +| +$/,"")}1'`
+
+OLDPATH="$TPATH/$VMNAME"
+NEWPATH="$2/$1"
+
+echo "Moving $OLDPATH -> $NEWPATH"
+
+{
+    vboxmanage unregistervm "$1"
+    mv -v "$OLDPATH" "$NEWPATH"
+    rm -r "$OLDPATH/"
+    vboxmanage registervm "$NEWPATH/$1.vbox"    
+} || {
+    echo "Error Moving VM... Quiting"
+    exit 1
+}
+
+
+ 

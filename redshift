@@ -1,0 +1,1 @@
+#!/bin/bash redshift -l 35.9:127.7

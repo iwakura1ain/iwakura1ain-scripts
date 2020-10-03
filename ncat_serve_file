@@ -1,0 +1,31 @@
+#!/bin/bash
+#serve simple file with netcat 
+#from https://nmap.org/ncat/guide/ncat-tricks.html
+
+PORT=80
+
+while getopts ":p:h" opt; do
+    case "${opt}" in
+        h)
+            echo "Usage: ncat_serve_file [FILE] -p [LPORT]"
+            exit 1
+            ;;
+        p)
+            PORT=${OPTARG}
+            ;;
+        \?)
+            echo "Usage: ncat_serve_file [FILE] -p [LPORT]"
+            exit 1
+            ;;
+    esac
+done
+shift $((OPTIND -1))
+
+if [ "$1" == "" ]; then
+    echo "No file selected."
+    exit 1
+fi
+
+echo "Trying to serve $1 on port $PORT"
+
+ncat -v -lk -p $PORT --sh-exec "echo -e 'HTTP/1.1 200 OK\r\n'; cat $1"

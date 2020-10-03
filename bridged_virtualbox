@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ "$1" == "-h" ]; then
+    echo "Usage: bridged_vbox [VM-NAME]"
+    exit 1
+fi
+
+INTERFACE=$(pci=`lspci  | awk '/Ethernet/{print $1}'`; find /sys/class/net ! -type d | xargs --max-args=1 realpath  | awk -v pciid=$pci -F\/ '{if($0 ~ pciid){print $NF}}')
+
+if vboxmanage list vms | fgrep -qw "$1" ; then
+
+    if vboxmanage list runningvms | fgrep -qw "$1" ; then
+        echo "Powering off $1..."
+        vboxmanage controlvm "$1" poweroff
+    fi
+    
+    echo "Setting $1 to bridged --bridgeadapter1 $INTERFACE"
+    vboxmanage modifyvm "$1" --nic1 bridged --bridgeadapter1 "$INTERFACE"
+else
+    echo "VM $1 does not exist... quitting"
+    exit 1
+fi
+
+
+

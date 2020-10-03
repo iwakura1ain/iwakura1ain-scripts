@@ -1,0 +1,12 @@
+#!/bin/bash
+
+while getopts "h" arg; do
+    case $arg in
+        h)
+            echo "Usage: dump_cookie [RHOST]"
+            exit 1
+            ;;
+    esac
+done    
+
+sudo tcpdump -i enp0s31f6 -nn -vv -A tcp port 80 and dst $1 | egrep -i 'Set-Cookie|Cookie:|Host:'

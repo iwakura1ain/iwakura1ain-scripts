@@ -1,0 +1,7 @@
+#!/bin/bash
+#archives all files found into one archive
+
+if [ "$1" == "-h" ]; then
+    echo "Usage: tar_all_found [PATH] [FIND-TARGET] [ARCHIVE-NAME] "
+
+find $1 -iname $2 -exec tar -rvf "$3.tar" {};

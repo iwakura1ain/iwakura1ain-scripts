@@ -1,0 +1,5 @@
+#!/bin/bash
+now="Reboot scheduled at $(date) + 11h\n"
+/bin/echo $now >> /tmp/reboot.log
+
+/usr/sbin/rtcwake -m off -s 39600

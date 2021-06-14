@@ -9,4 +9,4 @@ while getopts "h" arg; do
     esac
 done    
 
-sudo tcpdump -i enp0s31f6 -nn -vv -A tcp port $1 and dst $2 #| egrep -i 'Set-Cookie|Cookie:|Host:'
+sudo tcpdump -i enp0s31f6 -nn -vv -A tcp port $1 and dst $2 

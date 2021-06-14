@@ -5,10 +5,10 @@ if [[ $1 == "-h" ]]; then
     exit 1
 fi
 
-if  vboxmanage list vms | fgrep -qw "$1"  && [ -d "$2" ]; then
-    if vboxmanage list runningvms | fgrep -qw "$1" ; then
+if  vboxmanage list vms | fgrep -qw \"$1\"  && [ -d \"$2\" ]; then
+    if vboxmanage list runningvms | fgrep -qw \"$1\" ; then
         echo "Powering off $1..."
-        vboxmanage controlvm "$1" poweroff
+        vboxmanage controlvm \"$1\" poweroff
     fi
 else
     echo "Invalid name or directory... Quitting"
@@ -21,8 +21,8 @@ VMLIST=$(vboxmanage list vms)
 
 TPATH=`VBoxManage list systemproperties | grep -i "default machine folder:" | cut -b 24- | awk '{gsub(/^ +| +$/,"")}1'`
 
-OLDPATH="$TPATH/$VMNAME"
-NEWPATH="$2/$1"
+OLDPATH="\"$TPATH/$VMNAME\""
+NEWPATH="\"$2/$1\""
 
 echo "Moving $OLDPATH -> $NEWPATH"
 

@@ -3,10 +3,11 @@
 import string
 import sys
 import os
+from os import path
 
-DEFAULT_PASSWD = ""
+DEFAULT_PASSWD = "dksckddjs1!"
 DEFAULT_DEST = ""
-DEFAULT_PORT = ""
+DEFAULT_PORT = "1074"
 FORMAT_STR = ""
 
 
@@ -21,6 +22,7 @@ def GetArgs():
         exit();
     
     if "-F" in sys.argv:
+        global FORMAT_STR
         FORMAT_STR = sys.argv[sys.argv.index("-F")+1]
         sys.argv.remove("-F")
         sys.argv.remove(FORMAT_STR)
@@ -57,13 +59,15 @@ def GetArgs():
     return passwd, dest, port, files
 
 def main():
+    global FORMAT_STR
     passwd, dest, port, files = GetArgs();
-
+    
     for f in files:
         if(FORMAT_STR != ""):
+            dir = os.getcwd();
             oldfile = f
-            f = FORMAT_STR + f[f.index(".")-1]
-            os(oldfile, f)
+            f = FORMAT_STR + f[f.index(".")-1:] 
+            os.rename(dir + "/" + oldfile, dir + "/" + f)
             
         os.system("sshpass -p " + passwd + " scp -o StrictHostKeyChecking=no" + " -P " + port + " " + f + " " + dest)
         

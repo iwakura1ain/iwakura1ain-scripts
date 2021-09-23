@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import string
 import sys
 import os
@@ -65,6 +67,8 @@ def main():
             
         os.system("sshpass -p " + passwd + " scp -o StrictHostKeyChecking=no" + " -P " + port + " " + f + " " + dest)
         
+
+main()
 
 
 

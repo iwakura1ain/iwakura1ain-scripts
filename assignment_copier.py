@@ -16,7 +16,7 @@ def Help():
     
     
 def GetArgs():
-    if "-h" in sys.argv:
+    if "-h" in sys.argv or len(sys.argv) == 1:
         Help();
         exit();
     

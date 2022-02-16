@@ -33,6 +33,9 @@
 (global-unset-key (kbd "C-x h"))
 (global-set-key (kbd "C-x h") 'hs-toggle-hiding)
 
+(global-unset-key (kbd "C-x k"))
+(global-set-key (kbd "C-x k") 'kill-buffer-and-window)
+
 
 ;; (global-unset-key (kbd "M-i"))
 ;; (global-set-key (kbd "M-i") 'previous-line)

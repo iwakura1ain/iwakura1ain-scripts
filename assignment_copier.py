@@ -69,7 +69,8 @@ def main():
             f = FORMAT_STR + f[f.index(".")-1:] 
             os.rename(dir + "/" + oldfile, dir + "/" + f)
             
-        os.system("sshpass -p " + passwd + " scp -o StrictHostKeyChecking=no" + " -P " + port + " " + f + " " + dest)
+        if(os.system("sshpass -p " + passwd + " scp -o StrictHostKeyChecking=no" + " -P " + port + " " + f + " " + dest)):
+           print("Uploaded: " + f + "\n")
         
 
 main()

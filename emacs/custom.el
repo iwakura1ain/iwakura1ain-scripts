@@ -7,7 +7,9 @@
    [default default default italic underline success warning error])
  '(company-global-modes nil)
  '(company-idle-delay 0)
+ '(company-minimum-prefix-length 1)
  '(company-require-match nil)
+ '(company-selection-wrap-around t)
  '(company-tabnine-always-trigger nil)
  '(company-tabnine-auto-balance nil)
  '(company-tabnine-auto-fallback t)
@@ -39,6 +41,9 @@
  '(dired-always-read-filesystem t)
  '(dired-auto-revert-buffer t)
  '(dired-backup-overwrite t)
+ '(dired-sidebar-no-delete-other-windows t)
+ '(dired-sidebar-theme 'ascii)
+ '(dired-sidebar-width 25)
  '(eldoc-echo-area-use-multiline-p t)
  '(eldoc-idle-delay 0.0)
  '(eldoc-minor-mode-string "el")
@@ -55,6 +60,7 @@
  '(fringe-mode nil nil (fringe))
  '(global-flycheck-mode t)
  '(gud-tooltip-mode t)
+ '(highlight-indentation-blank-lines t)
  '(ibuffer-use-other-window t)
  '(ido-default-buffer-method 'selected-window)
  '(indicate-buffer-boundaries
@@ -68,7 +74,7 @@
  '(my-contextual-help-mode t)
  '(next-line-add-newlines t)
  '(package-selected-packages
-   '(tide company company-c-headers dashboard company-web dired-sidebar ac-html ac-html-csswatcher ac-js2 auto-complete django-snippets el-autoyas js-react-redux-yasnippets yasnippet-snippets flymake-eslint indium rjsx-mode lua-mode cython-mode flycheck-pycheckers jedi pyenv-mode elpy c-eldoc hl-prog-extra hl-block-mode emoji-fontset solaire-mode highlight-function-calls highlight-operators highlight-numbers yaml-mode web-mode lsp-ui lsp-mode json-mode js2-mode rainbow-mode elisp-slime-nav rainbow-delimiters counsel swiper ivy exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens operate-on-number nlinum move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring anzu ag ace-window))
+   '(smartparens tide company company-c-headers dashboard company-web dired-sidebar ac-html ac-html-csswatcher ac-js2 auto-complete django-snippets el-autoyas js-react-redux-yasnippets yasnippet-snippets flymake-eslint indium rjsx-mode lua-mode cython-mode flycheck-pycheckers jedi pyenv-mode elpy c-eldoc hl-prog-extra hl-block-mode emoji-fontset solaire-mode highlight-function-calls highlight-operators highlight-numbers yaml-mode web-mode lsp-ui lsp-mode json-mode js2-mode rainbow-mode elisp-slime-nav rainbow-delimiters counsel swiper ivy exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep operate-on-number nlinum move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring anzu ag ace-window))
  '(prelude-guru nil)
  '(prelude-whitespace nil)
  '(python-check-command
@@ -83,17 +89,27 @@
  '(smartparens-global-mode t)
  '(sp-autodelete-closing-pair t)
  '(sp-autodelete-pair nil)
+ '(sp-base-key-bindings 'paredit)
+ '(sp-ignore-modes-list '(minibuffer-mode minibuffer-inactive-mode prog-mode))
+ '(tide-always-show-documentation t)
+ '(tide-completion-detailed t)
+ '(tide-disable-suggestions nil)
+ '(tide-sort-completions-by-kind t)
  '(tool-bar-mode nil)
  '(tool-bar-style 'text-image-horiz)
  '(tooltip-delay 0.1)
+ '(web-mode-attr-indent-offset 2)
+ '(web-mode-attr-value-indent-offset 2)
  '(web-mode-auto-close-style 2)
  '(web-mode-block-padding 0)
+ '(web-mode-css-indent-offset 2)
  '(web-mode-enable-auto-closing t)
  '(web-mode-enable-auto-expanding t)
- '(web-mode-enable-auto-opening nil)
+ '(web-mode-enable-auto-opening t)
  '(web-mode-enable-auto-pairing nil)
  '(web-mode-enable-block-face t)
  '(web-mode-enable-comment-interpolation t)
+ '(web-mode-enable-curly-brace-indentation t)
  '(web-mode-enable-current-element-highlight t)
  '(web-mode-enable-element-content-fontification t)
  '(web-mode-enable-element-tag-fontification t)
@@ -134,9 +150,14 @@
  '(js2-external-variable ((t (:foreground "dark orange"))))
  '(js2-function-param ((t (:foreground "rosy brown"))))
  '(js2-warning ((t (:underline (:color "red" :style wave)))))
+ '(rainbow-delimiters-base-face ((t (:inherit nil :foreground "honeydew1"))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "honeydew2"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "honeydew3"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "honeydew4"))))
  '(sp-show-pair-match-face ((t (:background "gray29" :weight bold))))
+ '(typescript-primitive-face ((t (:inherit font-lock-type-face))))
  '(web-mode-css-selector-face ((t (:foreground "hot pink" :overline nil))))
- '(web-mode-current-element-highlight-face ((t (:foreground "cyan" :overline nil))))
+ '(web-mode-current-element-highlight-face ((t (:height 1.2))))
  '(web-mode-doctype-face ((t (:foreground "salmon" :overline t :slant normal :weight bold :height 1.2))))
  '(web-mode-function-call-face ((t (:inherit nil :weight bold :height 1.0))))
  '(web-mode-html-attr-name-face ((t (:foreground "salmon"))))
@@ -148,25 +169,12 @@
  '(yas-field-highlight-face ((t (:background "gray34")))))
 
 
-;;===================================== CUSTOM HOOKS  =================================================
-(add-hook 'global-mode-hook 'global-whitespace-mode nil)
-(add-hook 'prog-mode-hook 'highlight-numbers-mode)
-(add-hook 'prog-mode-hook 'highlight-operators-mode)
-(add-hook 'prog-mode-hook 'highlight-function-calls-mode)
+;;=========================== PACKAGE CONFIGURATION + CUSTOM HOOKS  =================================
+(load "/home/dks/.emacs.d/personal/my-configs-hooks.el")
 
-(add-hook 'prog-mode-hook 'eldoc-mode)
-(add-hook 'prog-mode-hook 'hs-minor-mode)
+;;================================ KEYBINDINGS + ALIASES ============================================
+(load "/home/dks/.emacs.d/personal/my-keybinds-aliases.el")
 
-(add-hook 'prog-mode-hook 'company-mode)
-(provide 'company)
-
-
-;;===================================== PACKAGE CONFIGURATION =================================================
-(load "/home/dks/.emacs.d/personal/my-configs.el")
-
-
-;;===================================== KEYBINDINGS =================================================
-(load "/home/dks/.emacs.d/personal/my-keybinds.el")
 
 
 

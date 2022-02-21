@@ -153,31 +153,56 @@
 (setq auto-revert-verbose nil)
 (global-auto-revert-mode 1)
 
-;;dired omit mode
+;; ;;dired omit mode
 (add-hook 'dired-mode-hook ( lambda ()
-                             
-                             
-                             (local-set-key (kbd "z") 'dired-dotfiles-toggle )))
+                             (dired-hide-dotfiles-mode)
+                             (all-the-icons-dired-mode)
+                             (dired-buffer-face-mode)
+                             (local-set-key (kbd "z") 'dired-hide-dotfiles-mode)))
 
-;;dired omit mode toggle dotfiles
-;; (setq dired-omit-files
-;;       (rx (or (seq bol (? ".") "#")
-;;               (seq bol "." eol)
-;;               )))
+;;(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
-(defun dired-dotfiles-toggle ()
-  "Show/hide dot-files"
+(defun dired-buffer-face-mode ()
+  "custom faces for dired"
   (interactive)
-  (when (equal major-mode 'dired-mode)
-    (if (or (not (boundp 'dired-dotfiles-show-p)) dired-dotfiles-show-p) ; if currently showing
-	(progn 
-	  (set (make-local-variable 'dired-dotfiles-show-p) nil)
-	  (message "h")
-	  (dired-mark-files-regexp "^\\\.")
-	  (dired-do-kill-lines))
-      (progn (revert-buffer) ; otherwise just revert to re-show
-	     (set (make-local-variable 'dired-dotfiles-show-p) t)))))
+  (face-remap-add-relative 'default '(:height 0.8)))
 
+
+
+
+;; ;;dired omit mode toggle dotfiles
+;; ;; (setq dired-omit-files
+;; ;;       (rx (or (seq bol (? ".") "#")
+;; ;;               (seq bol "." eol)
+;; ;;               )))
+
+;; (defun dired-dotfiles-toggle ()
+;;   "Show/hide dot-files"
+;;   (interactive)
+;;   (when (equal major-mode 'dired-mode)
+;;     (if (or (not (boundp 'dired-dotfiles-show-p)) dired-dotfiles-show-p) ; if currently showing
+;; 	(progn 
+;; 	  (set (make-local-variable 'dired-dotfiles-show-p) nil)
+;; 	  (message "h")
+;; 	  (dired-mark-files-regexp "^\\\.")
+;; 	  (dired-do-kill-lines))
+;;       (progn (revert-buffer) ; otherwise just revert to re-show
+;; 	     (set (make-local-variable 'dired-dotfiles-show-p) t)))))
+
+
+;; ibuffer: smaller font and all-the-icons 
+(add-hook 'ibuffer-mode-hook
+          ( lambda () (face-remap-add-relative 'default '(:height 0.8)))
+          (all-the-icons-ibuffer-mode))
+
+
+
+;;toggle both dired, ibuffer sidebars at the same time
+(defun dired-ibuffer-sidebar-toggle ()
+  "toggle both dired, ibuffer sidebars at the same time"
+  (interactive)
+  (dired-sidebar-toggle-sidebar)
+  (ibuffer-sidebar-toggle-sidebar))
 
 
 ;;??
@@ -190,7 +215,6 @@
 ;;(add-hook 'emacs-lisp-mode-hook (smartparens-strict-mode -1))
 
 (provide 'my-configs-hooks)
-
 
 
 

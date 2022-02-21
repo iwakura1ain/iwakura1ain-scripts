@@ -41,8 +41,9 @@
  '(dired-always-read-filesystem t)
  '(dired-auto-revert-buffer t)
  '(dired-backup-overwrite t)
+ '(dired-icon-image-size 16)
  '(dired-sidebar-no-delete-other-windows t)
- '(dired-sidebar-theme 'ascii)
+ '(dired-sidebar-theme 'none)
  '(dired-sidebar-width 25)
  '(eldoc-echo-area-use-multiline-p t)
  '(eldoc-idle-delay 0.0)
@@ -61,6 +62,33 @@
  '(global-flycheck-mode t)
  '(gud-tooltip-mode t)
  '(highlight-indentation-blank-lines t)
+ '(ibuffer-fontification-alist
+   '((10 buffer-read-only font-lock-constant-face)
+     (15
+      (and buffer-file-name
+           (string-match ibuffer-compressed-file-name-regexp buffer-file-name))
+      font-lock-doc-face)
+     (20
+      (string-match "^\\*"
+                    (buffer-name))
+      font-lock-variable-name-face)
+     (25
+      (and
+       (string-match "^ "
+                     (buffer-name))
+       (null buffer-file-name))
+      italic)
+     (30
+      (memq major-mode ibuffer-help-buffer-modes)
+      font-lock-comment-face)
+     (35
+      (derived-mode-p 'dired-mode)
+      font-lock-keyword-face)
+     (40
+      (and
+       (boundp 'emacs-lock-mode)
+       emacs-lock-mode)
+      ibuffer-locked-buffer)))
  '(ibuffer-use-other-window t)
  '(ido-default-buffer-method 'selected-window)
  '(indicate-buffer-boundaries
@@ -73,8 +101,9 @@
  '(menu-bar-mode nil)
  '(my-contextual-help-mode t)
  '(next-line-add-newlines t)
+ '(org-babel-python-command "/usr/bin/python3")
  '(package-selected-packages
-   '(smartparens tide company company-c-headers dashboard company-web dired-sidebar ac-html ac-html-csswatcher ac-js2 auto-complete django-snippets el-autoyas js-react-redux-yasnippets yasnippet-snippets flymake-eslint indium rjsx-mode lua-mode cython-mode flycheck-pycheckers jedi pyenv-mode elpy c-eldoc hl-prog-extra hl-block-mode emoji-fontset solaire-mode highlight-function-calls highlight-operators highlight-numbers yaml-mode web-mode lsp-ui lsp-mode json-mode js2-mode rainbow-mode elisp-slime-nav rainbow-delimiters counsel swiper ivy exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep operate-on-number nlinum move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring anzu ag ace-window))
+   '(all-the-icons-ibuffer major-mode-icons ibuffer-sidebar frame-tabs company-org-block ob-typescript org-inline-anim org-inline-pdf org-sidebar org-ac org-bullets avy dash dired-hacks-utils dired-subtree eldoc f gh git-commit highlight-indentation ht js2-refactor json-process-client json-snatcher logito lv magit-section makey markdown-mode marshal multiple-cursors parent-mode pcache pkg-info popup pythonic pyvenv s simple-httpd skewer-mode spinner transient typescript-mode web-completion-data with-editor yasnippet all-the-icons all-the-icons-dired dired-hide-dotfiles dired-icon smartparens tide company company-c-headers dashboard company-web dired-sidebar ac-html ac-html-csswatcher ac-js2 auto-complete django-snippets el-autoyas js-react-redux-yasnippets yasnippet-snippets flymake-eslint indium rjsx-mode lua-mode cython-mode flycheck-pycheckers jedi pyenv-mode elpy c-eldoc hl-prog-extra hl-block-mode emoji-fontset solaire-mode highlight-function-calls highlight-operators highlight-numbers yaml-mode web-mode lsp-ui lsp-mode json-mode js2-mode rainbow-mode elisp-slime-nav rainbow-delimiters counsel swiper ivy exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep operate-on-number nlinum move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring anzu ag ace-window))
  '(prelude-guru nil)
  '(prelude-whitespace nil)
  '(python-check-command
@@ -123,7 +152,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(dired-directory ((t (:foreground "turquoise2" :underline t :weight bold))))
+ '(dired-directory ((t (:foreground "turquoise2" :weight bold))))
  '(dired-header ((t (:foreground "tomato" :overline t :weight bold :height 1.2))))
  '(eldoc-highlight-function-argument ((t (:inherit bold))))
  '(error ((t (:foreground "red" :slant italic :weight ultra-bold))))
@@ -150,6 +179,7 @@
  '(js2-external-variable ((t (:foreground "dark orange"))))
  '(js2-function-param ((t (:foreground "rosy brown"))))
  '(js2-warning ((t (:underline (:color "red" :style wave)))))
+ '(org-meta-line ((t (:foreground "tomato"))))
  '(rainbow-delimiters-base-face ((t (:inherit nil :foreground "honeydew1"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "honeydew2"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "honeydew3"))))

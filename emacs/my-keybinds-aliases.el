@@ -47,9 +47,12 @@
   (global-unset-key (kbd "C-j"))
   (global-set-key (kbd "C-j") 'left-char)
 
-  (global-unset-key (kbd "C-z"))
-  (global-set-key (kbd "C-z") 'kill-line)
+  (global-unset-key (kbd "C-w"))
+  (global-set-key (kbd "C-w") 'kill-line)
 
+  (global-unset-key (kbd "C-z"))
+  (global-set-key (kbd "C-z") 'kill-region)
+  
   (global-unset-key (kbd "M-z"))
   (global-set-key (kbd "M-z") 'easy-kill)
 
@@ -80,12 +83,13 @@
 
 ;;===================================== ALIASES =================================================
 
-(defalias 'text-info 'describe-text-properties)
-(defalias 'key-info 'describe-key-briefly)
+(defalias 'ti 'describe-text-properties)
+(defalias 'ki 'describe-key-briefly)
 (defalias 'ev 'eval-buffer)
 (defalias 'sa 'mark-whole-buffer)
 
 (defalias 'tch 'make-empty-file)
+(defalias 'rn 'crux-rename-buffer-and-file)
 
 (defalias 'cr 'comment-region)
 (defalias 'uc 'uncomment-region)
@@ -94,6 +98,8 @@
 (defalias 'gtl 'goto-line)
 (defalias 'btm 'end-of-buffer)
 
+
+(defalias 'pl 'list-packages)
 
 (defalias 'dsh (lambda ()
                  "switch to dashboard"

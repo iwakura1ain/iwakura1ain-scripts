@@ -4,6 +4,7 @@
 
 
 (use-package prog-mode
+  :ensure nil
   :bind ("C-q" . 'move-beginning-of-line)
   :bind ("C-e" . 'move-end-of-line)
   :bind ("C-." . 'next-buffer)
@@ -25,19 +26,21 @@
   :bind ("M-i" . 'windmove-up)
   :bind ("M-k" . 'windmove-down)
   :bind ("M-l" . 'windmove-right)
-  :bind ("M-j" . windmove-left)
+  :bind ("M-j" . 'windmove-left)
   :bind ("<C-i>" . 'previous-line)
   :bind ("C-k" . 'next-line)
   :bind ("C-l" . 'right-char)
   :bind ("C-j" . 'left-char)
   )
 
+
  
-(use-package ibuffer-mode
+(use-package ibuffer
+  :ensure nil
   :bind ("M-i" . 'windmove-up)
   :bind ("M-k" . 'windmove-down)
   :bind ("M-l" . 'windmove-right)
-  :bind ("M-j" . windmove-left)
+  :bind ("M-j" . 'windmove-left)
   :bind ("<C-i>" . 'previous-line)
   :bind ("C-k" . 'next-line)
   :bind ("C-l" . 'right-char)
@@ -46,11 +49,12 @@
   )
 
 
-(use-package dired-mode
+(use-package dired
+  :ensure nil
   :bind ("M-i" . 'windmove-up)
   :bind ("M-k" . 'windmove-down)
   :bind ("M-l" . 'windmove-right)
-  :bind ("M-j" . windmove-left)
+  :bind ("M-j" . 'windmove-left)
   :bind ("<C-i>" . 'previous-line)
   :bind ("C-k" . 'next-line)
   :bind ("C-l" . 'right-char)
@@ -87,9 +91,5 @@
 
 
 (provide 'my-keybinds-aliases)
-
-
-
-
 
 

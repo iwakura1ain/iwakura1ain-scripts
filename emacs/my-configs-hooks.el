@@ -191,10 +191,11 @@
 
 
 ;; ibuffer: smaller font and all-the-icons 
-(add-hook 'ibuffer-mode-hook
-          ( lambda () (face-remap-add-relative 'default '(:height 0.8)))
+(add-hook 'ibuffer-sidebar-mode-hook
+          ( lambda ()
+            (face-remap-add-relative 'default '(:height 0.8))
+            (local-unset-key (kbd "C-k")))
           (all-the-icons-ibuffer-mode))
-
 
 
 ;;toggle both dired, ibuffer sidebars at the same time
@@ -202,7 +203,8 @@
   "toggle both dired, ibuffer sidebars at the same time"
   (interactive)
   (dired-sidebar-toggle-sidebar)
-  (ibuffer-sidebar-toggle-sidebar))
+  (ibuffer-sidebar-toggle-sidebar)
+  (windmove-up))
 
 
 ;;??

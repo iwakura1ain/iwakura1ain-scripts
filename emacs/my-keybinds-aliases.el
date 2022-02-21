@@ -1,83 +1,62 @@
 ;;===================================== KEYBINDINGS =================================================
 
-(defun my-keybindings ()
-  (global-unset-key (kbd "C-q"))
-  (global-set-key (kbd "C-q") 'move-beginning-of-line)
-  (global-unset-key (kbd "C-e"))
-  (global-set-key (kbd "C-e") 'move-end-of-line)
+(define-key input-decode-map [?\C-i] [C-i])
 
-  (windmove-default-keybindings)
 
-  (global-unset-key (kbd "C-."))
-  (global-set-key (kbd "C-.") 'next-buffer)
-  (global-unset-key (kbd "C-,"))
-  (global-set-key (kbd "C-,") 'previous-buffer)
+(use-package prog-mode
+  :bind ("C-q" . 'move-beginning-of-line)
+  :bind ("C-e" . 'move-end-of-line)
+  :bind ("C-." . 'next-buffer)
+  :bind ("C-," . 'previous-buffer)
+  :bind ("M-/" . 'delete-other-windows)
+  :bind ("M-u" . 'compile)
+  :bind ("M-m" . 'man)
+  :bind ("M-s" . 'shell)
+  :bind ("C-x f" . 'dired-ibuffer-sidebar-toggle)
+  :bind ("C-x h" . 'hs-toggle-hiding)
+  :bind ("C-x k" . 'kill-buffer-and-window)
+  :bind ("C-w" . 'kill-line)
+  :bind ("C-z" . 'kill-region)
+  :bind ("M-z" . 'easy-kill)
+  :bind ("<C-backspace>" . 'delete-forward-char)
+  :bind ("M-q" . 'undo-tree-undo)
+  :bind ("M-e" . 'undo-tree-redo)
+  :bind ("M-w" . 'undo-tree-visualize)
+  :bind ("M-i" . 'windmove-up)
+  :bind ("M-k" . 'windmove-down)
+  :bind ("M-l" . 'windmove-right)
+  :bind ("M-j" . windmove-left)
+  :bind ("<C-i>" . 'previous-line)
+  :bind ("C-k" . 'next-line)
+  :bind ("C-l" . 'right-char)
+  :bind ("C-j" . 'left-char)
+  )
 
-  (global-unset-key (kbd "M-/"))
-  (global-set-key (kbd "M-/") 'delete-other-windows)
+ 
+(use-package ibuffer-mode
+  :bind ("M-i" . 'windmove-up)
+  :bind ("M-k" . 'windmove-down)
+  :bind ("M-l" . 'windmove-right)
+  :bind ("M-j" . windmove-left)
+  :bind ("<C-i>" . 'previous-line)
+  :bind ("C-k" . 'next-line)
+  :bind ("C-l" . 'right-char)
+  :bind ("C-j" . 'left-char)
+  :bind ("<C-return>" . 'ibuffer-visit-buffer-other-window)
+  )
 
-  (global-unset-key (kbd "M-u"))
-  (global-set-key (kbd "M-u") 'compile)
 
-  (global-unset-key (kbd "M-m"))
-  (global-set-key (kbd "M-m") 'man)
-
-  (global-unset-key (kbd "M-s"))
-  (global-set-key (kbd "M-s") 'shell)
-
-  (global-unset-key (kbd "C-x f"))
-  (global-set-key (kbd "C-x f") 'dired-sidebar-toggle-with-current-directory)
-
-  (global-unset-key (kbd "C-x h"))
-  (global-set-key (kbd "C-x h") 'hs-toggle-hiding)
-
-  (global-unset-key (kbd "C-x k"))
-  (global-set-key (kbd "C-x k") 'kill-buffer-and-window)
-
-  (define-key input-decode-map [?\C-i] [C-i])
-  (global-unset-key (kbd "<C-i>"))
-  (global-set-key (kbd "<C-i>") 'previous-line)
-
-  (global-unset-key (kbd "C-k"))
-  (global-set-key (kbd "C-k") 'next-line)
-
-  (global-unset-key (kbd "C-l"))
-  (global-set-key (kbd "C-l") 'right-char)
-
-  (global-unset-key (kbd "C-j"))
-  (global-set-key (kbd "C-j") 'left-char)
-
-  (global-unset-key (kbd "C-w"))
-  (global-set-key (kbd "C-w") 'kill-line)
-
-  (global-unset-key (kbd "C-z"))
-  (global-set-key (kbd "C-z") 'kill-region)
-  
-  (global-unset-key (kbd "M-z"))
-  (global-set-key (kbd "M-z") 'easy-kill)
-
-  (global-unset-key (kbd "M-q"))
-  (global-set-key (kbd "M-q") 'undo-tree-undo)
-
-  (global-unset-key (kbd "M-w"))
-  (global-set-key (kbd "M-w") 'undo-tree-visualize)
-  
-  (global-unset-key (kbd "M-e"))
-  (global-set-key (kbd "M-e") 'undo-tree-redo)
-
-  (global-unset-key (kbd "M-i"))
-  (global-set-key (kbd "M-i") 'windmove-up)
-
-  (global-unset-key (kbd "M-k"))
-  (global-set-key (kbd "M-k") 'windmove-down)
-
-  (global-unset-key (kbd "M-j"))
-  (global-set-key (kbd "M-j") 'windmove-left)
-
-  (global-unset-key (kbd "M-l"))
-  (global-set-key (kbd "M-l") 'windmove-right)
-
-)
+(use-package dired-mode
+  :bind ("M-i" . 'windmove-up)
+  :bind ("M-k" . 'windmove-down)
+  :bind ("M-l" . 'windmove-right)
+  :bind ("M-j" . windmove-left)
+  :bind ("<C-i>" . 'previous-line)
+  :bind ("C-k" . 'next-line)
+  :bind ("C-l" . 'right-char)
+  :bind ("C-j" . 'left-char)
+  :bind ("<C-return>" . 'dired-find-file)
+  )
 
 
 

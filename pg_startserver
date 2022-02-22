@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Starting postgresql@10-main.service";
+pg_ctl start -D /etc/postgresql/10/main -l /etc/postgresql/10/postgresql.log;

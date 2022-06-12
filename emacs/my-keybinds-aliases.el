@@ -28,9 +28,11 @@
   :bind ("M-l" . 'windmove-right)
   :bind ("M-j" . 'windmove-left)
   :bind ("<C-i>" . 'previous-line)
+  ;:bind("C-i" . 'indent-for-tab-command)
   :bind ("C-k" . 'next-line)
   :bind ("C-l" . 'right-char)
   :bind ("C-j" . 'left-char)
+  :bind ("C-i" . 'indent-region)
   )
 
 
@@ -64,12 +66,24 @@
 
 
 
+(use-package shell
+  :ensure nil
+  :bind ("C-M-i" . 'comint-previous-input)
+  :bind ("C-M-k" . 'comint-next-input)
+  )
+
+
+;; (use-package org
+;;   :ensure nill
+;;   :bind )
+
+
 ;;===================================== ALIASES =================================================
 
 (defalias 'ti 'describe-text-properties)
 (defalias 'ki 'describe-key-briefly)
 (defalias 'ev 'eval-buffer)
-(defalias 'sa 'mark-whole-buffer)
+(defalias 'ma 'mark-whole-buffer)
 
 (defalias 'tch 'make-empty-file)
 (defalias 'rn 'crux-rename-buffer-and-file)
@@ -89,7 +103,29 @@
                  (interactive)
                  (switch-to-buffer "*dashboard*")))
 
+(defalias 'hb 'hs-hide-block)
+(defalias 'sb 'hs-show-block)
+(defalias 'ha 'hs-hide-all)
+(defalias 'hs 'hs-show-all)
+(defalias 'sc 'shell-command)
+
+;;https://github.com/june3474 thanks dad :D
+(defun remove-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
 
 (provide 'my-keybinds-aliases)
+
+
+
+
+
+
+
+
+
+
 
 

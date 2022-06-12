@@ -1,9 +1,10 @@
 ;;=========================== PACKAGE CONFIGURATION + CUSTOM HOOKS  =================================
 (add-hook 'global-mode-hook 'global-whitespace-mode nil)
+(add-hook 'global-mode-hook 'prettify-symbols-mode)
+
 (add-hook 'prog-mode-hook 'highlight-numbers-mode)
 (add-hook 'prog-mode-hook 'highlight-operators-mode)
 (add-hook 'prog-mode-hook 'highlight-function-calls-mode)
-(add-hook 'prog-mode-hook 'prettify-symbols-mode)
 
 (add-hook 'prog-mode-hook 'eldoc-mode)
 (add-hook 'prog-mode-hook 'hs-minor-mode)
@@ -12,8 +13,6 @@
 (provide 'company)
 
 (add-hook 'prog-mode-hook 'flymake-mode-off)
-
-(add-hook 'prog-mode-hook 'my-keybindings)
 
 
 ;;c eldoc hooks
@@ -37,11 +36,6 @@
 
 ;;js2 indent styles
 (setq js2-bounce-indent-p t)
-
-
-;;web-mode hook for html + css + js
-(add-hook 'web-mode-hook (company-mode -1))
-(add-hook 'web-mode-hook 'auto-complete-mode)
 
 
 ;;rjsx-mode configuration
@@ -93,6 +87,14 @@
 (setq elpy-syntax-check-command python-check-command)
 
 
+
+;;web-mode hook for html + css + js
+(add-hook 'web-mode-hook (company-mode -1))
+(add-hook 'web-mode-hook 'auto-complete-mode)
+
+(add-hook 'web-mode-hook (lambda ()
+                           (setq web-mode-markup-indent-offset 2)
+                           (setq web-mode-css-indent-offset 2)))
       
 ;;web-mode for web development
 (require 'web-mode)
@@ -130,6 +132,9 @@
 (add-to-list 'company-backends 'company-web-jade)
 (add-to-list 'company-backends 'company-web-slim)
 
+
+;;org mode
+(add-hook 'org-mode-hook 'org-indent-mode)
 
 ;tabnine AI autocomplete
 ;(require 'company-tabnine)
@@ -219,8 +224,9 @@
 (provide 'my-configs-hooks)
 
 
-
-
+;; tab widths
+(setq tab-stop-list (number-sequence 4 200 4))
+(setq tab-width 4)
 
 
 

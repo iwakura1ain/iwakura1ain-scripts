@@ -1,7 +1,10 @@
 ;;===================================== KEYBINDINGS =================================================
 
 (define-key input-decode-map [?\C-i] [C-i])
+(define-key input-decode-map [?\C-k] [C-k])
 
+
+(global-unset-key (kbd "C-x C-z"))
 
 (use-package prog-mode
   :ensure nil
@@ -28,7 +31,7 @@
   :bind ("M-l" . 'windmove-right)
   :bind ("M-j" . 'windmove-left)
   :bind ("<C-i>" . 'previous-line)
-  ;:bind("C-i" . 'indent-for-tab-command)
+                                        ;:bind("C-i" . 'indent-for-tab-command)
   :bind ("C-k" . 'next-line)
   :bind ("C-l" . 'right-char)
   :bind ("C-j" . 'left-char)
@@ -36,7 +39,8 @@
   )
 
 
- 
+
+
 (use-package ibuffer
   :ensure nil
   :bind ("M-i" . 'windmove-up)
@@ -44,7 +48,7 @@
   :bind ("M-l" . 'windmove-right)
   :bind ("M-j" . 'windmove-left)
   :bind ("<C-i>" . 'previous-line)
-  :bind ("C-k" . 'next-line)
+  :bind ("<C-k>" . 'next-line)
   :bind ("C-l" . 'right-char)
   :bind ("C-j" . 'left-char)
   :bind ("<C-return>" . 'ibuffer-visit-buffer-other-window)
@@ -72,6 +76,14 @@
   :bind ("C-M-k" . 'comint-next-input)
   )
 
+
+;; (use-package lsp
+;;   :ensure nil
+;;   :bind ("M-q" . 'undo-tree-undo)
+;;   :bind ("M-e" . 'undo-tree-redo)
+;;   :bind ("M-w" . 'undo-tree-visualize)
+;;   :bind ("C-x h" . 'hs-hide-block-at-point)
+;;   )
 
 ;; (use-package org
 ;;   :ensure nill

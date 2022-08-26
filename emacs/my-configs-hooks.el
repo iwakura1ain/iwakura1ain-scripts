@@ -1,5 +1,5 @@
 ;;=========================== PACKAGE CONFIGURATION + CUSTOM HOOKS  =================================
-(add-hook 'global-mode-hook 'global-whitespace-mode nil)
+(add-hook 'global-mode-hook 'global-whitespace-mode -1)
 (add-hook 'global-mode-hook 'prettify-symbols-mode)
 
 (add-hook 'prog-mode-hook 'highlight-numbers-mode)
@@ -7,7 +7,6 @@
 (add-hook 'prog-mode-hook 'highlight-function-calls-mode)
 
 (add-hook 'prog-mode-hook 'eldoc-mode)
-(add-hook 'prog-mode-hook 'hs-minor-mode)
 
 (add-hook 'prog-mode-hook 'company-mode)
 (provide 'company)
@@ -16,7 +15,7 @@
 
 
 ;;c eldoc hooks
-;;(autoload 'tal-mode "tal-mode" "A major mode for editing TAL files." t nil)
+;;(Autoload 'tal-mode "tal-mode" "A major mode for editing TAL files." t nil)
 ;;(setq c-eldoc-includes "`pkg-config gtk+-2.0 --cflags` -I./ -I../ ")
 ;;(load "c-eldoc")
 
@@ -35,7 +34,7 @@
 (add-hook 'js2-mode-hook 'ac-js2-mode)
 
 ;;js2 indent styles
-(setq js2-bounce-indent-p t)
+;;(setq js2-bounce-indent-p t)
 
 
 ;;rjsx-mode configuration
@@ -72,7 +71,7 @@
 ;;format config options 
 ;;https://github.com/Microsoft/TypeScript/blob/v3.3.1/src/server/protocol.ts#L2858-L2890
 (setq tide-format-options '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t
-                             :placeOpenBraceOnNewLineForFunctions nil))
+                                                                                  :placeOpenBraceOnNewLineForFunctions nil))
 
 ;; formats the buffer before saving
 (add-hook 'before-save-hook 'tide-format-before-save)
@@ -95,25 +94,25 @@
 (add-hook 'web-mode-hook (lambda ()
                            (setq web-mode-markup-indent-offset 2)
                            (setq web-mode-css-indent-offset 2)))
-      
+
 ;;web-mode for web development
 (require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.xml?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.json?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.xml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.json\\'" . web-mode))
 
 
-;(eval-after-load 'flycheck
-;  '(flycheck-add-mode 'html-tidy 'web-mode))
+                                        ;(eval-after-load 'flycheck
+                                        ;  '(flycheck-add-mode 'html-tidy 'web-mode))
 
 
 ;;yasnippet configuration
@@ -127,7 +126,7 @@
 (setq company-tooltip-align-annotations t)
 
 ;;company backend configuration
-;web mode
+                                        ;web mode
 (add-to-list 'company-backends 'company-web-html)
 (add-to-list 'company-backends 'company-web-jade)
 (add-to-list 'company-backends 'company-web-slim)
@@ -136,26 +135,30 @@
 ;;org mode
 (add-hook 'org-mode-hook 'org-indent-mode)
 
-;tabnine AI autocomplete
-;(require 'company-tabnine)
-;(add-to-list 'company-backends 'company-tabnine)
+                                        ;tabnine AI autocomplete
+                                        ;(require 'company-tabnine)
+                                        ;(add-to-list 'company-backends 'company-tabnine)
 
 
-;auto-complete configuration
-;(global-auto-complete-mode nil)
+                                        ;auto-complete configuration
+                                        ;(global-auto-complete-mode nil)
 
 
 ;;dashboard
 (require 'dashboard)
-(dashboard-setup-startup-hook)
-(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+;;(dashboard-setup-startup-hook)
+;;(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
 
 
 
 
 ;;dired auto update
 (setq global-auto-revert-non-file-buffers t)
-(setq auto-revert-verbose nil)
+;;(setq auto-revert-verbose nil)
 (global-auto-revert-mode 1)
 
 ;; ;;dired omit mode
@@ -221,7 +224,6 @@
 (add-hook 'emacs-lisp-mode-hook (flycheck-mode -1))
 ;;(add-hook 'emacs-lisp-mode-hook (smartparens-strict-mode -1))
 
-(provide 'my-configs-hooks)
 
 
 ;; tab widths
@@ -229,7 +231,52 @@
 (setq tab-width 4)
 
 
+;; java jdee 
+;; (add-hook 'jdee-mode-hook 'highlight-numbers-mode)
+;; (add-hook 'jdee-mode-hook 'highlight-operators-mode)
+;; (add-hook 'jdee-mode-hook 'highlight-function-calls-mode)
+;; (add-hook 'jdee-mode-hook 'hs-minor-mode)
+
+;; (add-hook 'jdee-mode-hook ( lambda ()
+;;                             (local-unset-key (kbd "M-q"))
+;;                             (local-unset-key (kbd "M-e"))
+;;                             (face-remap-add-relative 'font-lock-type-face '(:height 1.2))))
+
+;;java lsp
+(require 'lsp-java)
+(add-hook 'java-mode-hook ( lambda ()
+                            (local-unset-key (kbd "M-q"))
+                            (local-unset-key (kbd "M-e"))
+                            (hs-minor-mode)
+                            (dap-mode -1)
+                            (highlight-numbers-mode)
+                            (highlight-operators-mode)
+                            (highlight-function-calls-mode)
+                            (face-remap-add-relative 'font-lock-type-face '(:height 1.2))))
+
+(add-hook 'java-mode-hook #'lsp)
+;;(setenv "JAVA_HOME"  "path_to_java_folder/Contents/Home/")
+(setq lsp-java-java-path "/usr/bin/java")
 
 
+;;lsp-java and spring with sts4
+(require 'lsp-java-boot)
+(add-hook 'lsp-mode-hook #'lsp-lens-mode)
+(add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
 
+
+;;java lsp-javacomp
+;; (require 'lsp-javacomp)
+;; (add-hook 'java-mode-hook #'lsp-javacomp-enable)
+
+
+(require 'ibuffer)
+(add-hook 'ibuffer-mode-hook ( lambda ()
+                               (local-unset-key (kbd "M-j"))
+                               (local-unset-key (kbd "M-l"))
+                               (local-unset-key (kbd "M-k"))
+                               (local-unset-key (kbd "M-i"))))
+
+
+(provide 'my-configs-hooks)
 

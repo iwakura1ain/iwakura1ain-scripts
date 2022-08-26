@@ -1,0 +1,17 @@
+netstat -nr #routing table
+netstat -s #prot statistics
+
+send(IP(dst="[addr]")/ICMP()/"[message]");
+var=sr1(IP(dst="[addr]")/ICMP()); var.show();
+var=sr(IP(dst="[addr]")/TCP(dport="[port]")); ans, unans = _; ans.summary();
+var=IP()/TCP(); var.src="[addr]"; var.dst="[addr]"; send(var);
+send(IP(src=RandIP(), dst="[addr]")/fuzz(TCP()), loop=1);
+
+openssl rand -base64 64 
+
+ifconfig wlan0 down
+airmon-ng start wlan0
+airodump-ng wlan0
+airodump-ng -c [chnl] -w [out] --bssid [bssid] wlan0
+crunch [min] [max] [chars] -t "12@@" -o [out]
+aircrack-ng [.cap] -w [.dict] 

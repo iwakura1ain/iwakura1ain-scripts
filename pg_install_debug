@@ -1,0 +1,52 @@
+
+Creating config file /etc/postgresql-common/createcluster.conf with new version
+Building PostgreSQL dictionaries from installed myspell/hunspell packages...
+  en_au
+  en_ca
+  en_gb
+  en_us
+  en_za
+  ko
+Removing obsolete dictionary files:
+Created symlink /etc/systemd/system/multi-user.target.wants/postgresql.service → /lib/systemd/system/postgresql.service.
+Setting up postgresql-client-10 (10.12-0ubuntu0.18.04.1) ...
+update-alternatives: using /usr/share/postgresql/10/man/man1/psql.1.gz to provide /usr/share/man/man1/psql.1.gz (psql.1.gz) in auto mode
+Setting up postgresql-client (10+190ubuntu0.1) ...
+Setting up postgresql-10 (10.12-0ubuntu0.18.04.1) ...
+Creating new PostgreSQL cluster 10/main ...
+/usr/lib/postgresql/10/bin/initdb -D /var/lib/postgresql/10/main --auth-local peer --auth-host md5
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locales
+  COLLATE:  en_US.UTF-8
+  CTYPE:    en_US.UTF-8
+  MESSAGES: en_US.UTF-8
+  MONETARY: ko_KR.UTF-8
+  NUMERIC:  ko_KR.UTF-8
+  TIME:     ko_KR.UTF-8
+The default database encoding has accordingly been set to "UTF8".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+fixing permissions on existing directory /var/lib/postgresql/10/main ... ok
+creating subdirectories ... ok
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting default timezone ... Asia/Seoul
+selecting dynamic shared memory implementation ... posix
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+
+Success. You can now start the database server using:
+
+    /usr/lib/postgresql/10/bin/pg_ctl -D /var/lib/postgresql/10/main -l logfile start
+
+Ver Cluster Port Status Owner    Data directory              Log file
+10  main    5432 down   postgres /var/lib/postgresql/10/main /var/log/postgresql/postgresql-10-main.log
+update-alternatives: using /usr/share/postgresql/10/man/man1/postmaster.1.gz to provide /usr/share/man/man1/postmaster.1.gz (postmaster.1.gz) in auto mode
+
+https://superuser.com/questions/1320145/postgresql-10-does-not-start-under-ubuntu-18-04
